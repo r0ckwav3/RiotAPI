@@ -60,7 +60,11 @@ def getAccountID(name):
     return getSummoner(name)["accountId"]
 
 
-def getMatchIDs(AccountID): # 0 is the most recent
+def getPUUID(name):
+    return getSummoner(name)["puuid"]
+
+
+def getMatchIDs(AccountID):  # 0 is the most recent
     url = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/%s?api_key=%s" % (AccountID,KEY)
     temp = json.loads(gethtml(url))
     return temp["matches"]
