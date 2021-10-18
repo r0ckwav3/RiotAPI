@@ -43,7 +43,7 @@ def gethtml(url, attempts=5):
             print("Exception in gethtml:", e)
 
     if fp is None:
-        print("Error when requesting URL:",url)
+        print("Error when requesting URL:", url)
 
     mybytes = fp.read()
 
@@ -55,7 +55,7 @@ def gethtml(url, attempts=5):
 
 
 def getSummoner(name):
-    url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/%s?api_key=%s" % (name,KEY)
+    url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/%s?api_key=%s" % (name, KEY)
     return json.loads(gethtml(url))
 
 
@@ -67,14 +67,14 @@ def getPUUID(name):
     return getSummoner(name)["puuid"]
 
 
-def getMatchIDs(PUUID, start = 0, count = 20):  # 0 is the most recent
+def getMatchIDs(PUUID, start=0, count=20):  # 0 is the most recent
     url = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?start=%s&count=%s&api_key=%s" % (PUUID, str(start), str(count), KEY)
     temp = json.loads(gethtml(url))
     return temp
 
 
 def getMatch(MatchID):
-    url = "https://americas.api.riotgames.com/lol/match/v5/matches/%s?api_key=%s" % (MatchID,KEY)
+    url = "https://americas.api.riotgames.com/lol/match/v5/matches/%s?api_key=%s" % (MatchID, KEY)
     return json.loads(gethtml(url))
 
 
