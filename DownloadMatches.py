@@ -13,24 +13,25 @@ f = open(path, mode="w")
 
 matchchunksize = 64
 currentmatch = 0
+flag = True
 
-while matchchunksize != 0:
+while flag:
     time.sleep(120)
-    try:
-        matches = getMatchIDs(chosenid, start=currentmatch, count=matchchunksize)
-    except Exception as e:
-        matchchunksize = matchchunksize//2
-        print("getMatchIDs failed, decreasing chunk size to", matchchunksize)
-    else:
-        for j in range(len(matches)):
-            print(j+currentmatch)
-            url = "https://americas.api.riotgames.com/lol/match/v5/matches/%s?api_key=%s" % (matches[j], KEY)
-            try:
-                matchdata = gethtml(url)
-            except Exception as e:
-                pass
-            else:
-                f.write(matchdata+"\n")
-        currentmatch += matchchunksize
+    matches = getMatchIDs(chosenid, start=currentmatch, count=matchchunksize)
+    print("successfully fetched", len(matches), "matches")
+
+    for j in range(len(matches)):
+        url = "https://americas.api.riotgames.com/lol/match/v5/matches/%s?api_key=%s" % (matches[j], KEY)
+        try:
+            matchdata = gethtml(url)
+        except Exception as e:
+            print(j+currentmatch, "failed:", e)
+        else:
+            print(j+currentmatch, "success")
+            f.write(matchdata+"\n")
+
+    if len(matches) == 0:
+        flag = False
+    currentmatch += matchchunksize
 
 f.close()
