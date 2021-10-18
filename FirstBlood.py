@@ -8,7 +8,6 @@ fblosses = 0
 player = "rockwave22"
 
 f = open("StoredData/%sMatchData.txt" % player)
-targetid = getAccountID(player)
 
 for line in f:
     match = json.loads(line.strip())
