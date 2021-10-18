@@ -3,7 +3,6 @@ import json
 
 with open("APIkey.txt") as Keyfile:
     KEY = Keyfile.readline().strip()
-    print(KEY)
 
 
 def exploreDict(d):
@@ -68,8 +67,8 @@ def getPUUID(name):
     return getSummoner(name)["puuid"]
 
 
-def getMatchIDs(PUUID):  # 0 is the most recent
-    url = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?api_key=%s" % (PUUID,KEY)
+def getMatchIDs(PUUID, start = 0, count = 20):  # 0 is the most recent
+    url = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?start=%s&count=%s&api_key=%s" % (PUUID, str(start), str(count), KEY)
     temp = json.loads(gethtml(url))
     return temp
 
