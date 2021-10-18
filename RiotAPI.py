@@ -99,3 +99,14 @@ def getParticipantIndex(Match, PUUID):
 
 def playerWin(Match, PUUID):
     return Match["info"]["participants"][getParticipantIndex(Match, PUUID)]["win"]
+
+
+def mobalyticsMatch(MatchID, participantName=None):
+    # this currently only works in NA matches
+    non_region_ID = MatchID[4:]
+    if(participantName is None):
+        with json.loads(getMatch(MatchID)) as tempjson:
+            participantName = tempjson["info"]["participants"][0]["summonerName"]
+    linkprefix = "https://app.mobalytics.gg/lol/match/na/"
+
+    return linkprefix+participantName+"/"+non_region_ID
