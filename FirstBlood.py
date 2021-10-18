@@ -13,13 +13,13 @@ targetid = getAccountID(player)
 for line in f:
     match = json.loads(line.strip())
 
-    for team in match["teams"]:
-        if team["firstBlood"]:
-            if team["win"] == "Win":
+    for player in match["info"]["participants"]:
+        if player["firstBloodKill"]:
+            if player["win"]:
                 fbwins += 1
             else:
-                fblosses +=1
+                fblosses += 1
 
 f.close()
 
-print("fbwins: %d, fblosses: %d" % (fbwins,fblosses))
+print("fbwins: %d, fblosses: %d" % (fbwins, fblosses))
