@@ -92,15 +92,3 @@ def getParticipantIndex(Match, AccountID):
 
 def playerWin(Match, AccountID):
     return Match["participants"][getParticipantIndex(Match, AccountID)]["stats"]["win"]
-
-
-# gethtml("https://www.google.com")
-
-# exploreDict(getSummoner("Rockwave22"))
-# myid = getAccountID("Rockwave22")
-# print(getAccountID("bravewy"))
-# myid = "k385ZSP0MGtPayTkIMk79H-UFqsS9nh9QaOBlzGb64IJNVYdLhmRukWO" # bravewy
-# myid = "Kr0ydb0LN8UkJh1MAQn7lopUGPsBm942aIKGalFh0owNHDDKgG_lrVb-" # rockwave22
-# print("id: " + myid)
-# exploreDict(getMatch(getMatchIDs(myid)[0]["gameId"]))
-# print(playerWin(getMatch(getMatchIDs(myid)[0]["gameId"]),myid))
