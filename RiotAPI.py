@@ -85,8 +85,9 @@ def getPlayerNames(Match):
 
 
 def getParticipantIndex(Match, PUUID):
+    print(Match["metadata"]["matchId"], len(Match["info"]["participants"]))
     playerindex = None
-    for p in range(10):
+    for p in range(len(Match["info"]["participants"])):
         if Match["info"]["participants"][p]["puuid"] == PUUID:
             playerindex = p
     # print(playerindex,Match["participantIdentities"][playerindex]["player"]["summonerName"])
